@@ -23,9 +23,12 @@ public class EndpointsAsyncTaskTest {
             new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void asyncTaskResponse_notEmpty() {
+    public void asyncTaskResponse_valid() {
+        String error = mActivityTestRule.getActivity().getString(R.string.backend_connection_error);
         onView(withId(R.id.tellJoke_btn)).perform(click());
-        onView(withId(R.id.joke_tv)).check(matches(not(withText(""))));
+        onView(withId(R.id.joke_tv))
+                .check(matches(not(withText(""))))
+                .check(matches(not(withText(error))));
     }
 
 }

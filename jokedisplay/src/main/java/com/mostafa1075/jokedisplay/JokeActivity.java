@@ -15,12 +15,12 @@ public class JokeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_joke);
 
         Intent intent = getIntent();
-        if(intent == null)
+        if (intent == null)
             finish();
-
-        String joke = intent.getStringExtra(JOKE_KEY);
+        String joke = null;
+        if (intent.hasExtra(JOKE_KEY))
+            joke = intent.getStringExtra(JOKE_KEY);
         TextView jokeTV = findViewById(R.id.joke_tv);
         jokeTV.setText(joke);
-
     }
 }
